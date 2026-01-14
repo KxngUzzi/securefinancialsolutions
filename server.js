@@ -92,8 +92,8 @@ app.post('/api/contact', contactValidation, async (req, res) => {
 
     // Create email content
     const mailOptions = {
-      from: process.env.EMAIL_FROM || `"Secure Financial Solutions" <info@securefinancial.co.za>`,
-      to: process.env.EMAIL_TO || 'info@securefinancial.co.za',
+      from: process.env.EMAIL_FROM || `"Secure Financial Solutions" <admin@Securefinancial.co.za>`,
+      to: process.env.EMAIL_TO || 'admin@Securefinancial.co.za',
       replyTo: email,
       subject: `New Contact Form Submission - ${serviceName}`,
       html: `
@@ -136,7 +136,7 @@ ${message}
 
       // Send auto-reply to customer
       const autoReplyOptions = {
-        from: process.env.EMAIL_FROM || `"Secure Financial Solutions" <info@securefinancial.co.za>`,
+        from: process.env.EMAIL_FROM || `"Secure Financial Solutions" <admin@Securefinancial.co.za>`,
         to: email,
         subject: 'Thank you for contacting Secure Financial Solutions',
         html: `
@@ -151,7 +151,7 @@ ${message}
               <p>Phone: ${phone}</p>
             </div>
             <p>If you have any urgent questions, please feel free to call us at:</p>
-            <p><strong>0800 123 4567</strong></p>
+            <p><strong>0832759626</strong></p>
             <p>Best regards,<br>Secure Financial Solutions Team</p>
           </div>
         `,
@@ -168,7 +168,7 @@ Your Inquiry Details:
 Service: ${serviceName}
 Phone: ${phone}
 
-If you have any urgent questions, please feel free to call us at: 0800 123 4567
+If you have any urgent questions, please feel free to call us at: 0832759626
 
 Best regards,
 Secure Financial Solutions Team

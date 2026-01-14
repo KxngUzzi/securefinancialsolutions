@@ -6,32 +6,49 @@ Create a `.env` file in the root directory with the following variables:
 # Server Configuration
 PORT=3000
 
-# Email Configuration
-# For Gmail, use:
-EMAIL_HOST=smtp.gmail.com
+# Email Configuration for GoDaddy
+# GoDaddy Workspace Email / Microsoft 365 Email Settings
+EMAIL_HOST=smtp.office365.com
 EMAIL_PORT=587
 EMAIL_SECURE=false
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-EMAIL_FROM="Secure Financial Solutions <info@securefinancial.co.za>"
-EMAIL_TO=info@securefinancial.co.za
+EMAIL_USER=admin@securefinancial.co.za
+EMAIL_PASS=your-email-password
+EMAIL_FROM="Secure Financial Solutions <admin@securefinancial.co.za>"
+EMAIL_TO=admin@securefinancial.co.za
 
-# For other email providers, adjust accordingly:
-# EMAIL_HOST=smtp.securefinancial.co.za
+# Alternative GoDaddy SMTP Settings (if using GoDaddy's email hosting):
+# EMAIL_HOST=smtpout.secureserver.net
 # EMAIL_PORT=587
 # EMAIL_SECURE=false
-# EMAIL_USER=info@securefinancial.co.za
+# EMAIL_USER=admin@securefinancial.co.za
 # EMAIL_PASS=your-email-password
-# EMAIL_FROM="Secure Financial Solutions <info@securefinancial.co.za>"
-# EMAIL_TO=info@securefinancial.co.za
+# EMAIL_FROM="Secure Financial Solutions <admin@securefinancial.co.za>"
+# EMAIL_TO=admin@securefinancial.co.za
 ```
 
-## Gmail Setup Instructions
+## GoDaddy Email Setup Instructions
 
-1. Enable 2-Factor Authentication on your Google account
-2. Go to Google Account → Security → 2-Step Verification → App passwords
-3. Create an app password for "Mail"
-4. Use that app password (not your regular password) in `EMAIL_PASS`
+### Option 1: GoDaddy Workspace Email / Microsoft 365 (Recommended)
+If your email is hosted through GoDaddy's Microsoft 365:
+1. Use `smtp.office365.com` as EMAIL_HOST
+2. Port: 587
+3. Use your full email address (admin@securefinancial.co.za) as EMAIL_USER
+4. Use your email account password as EMAIL_PASS
+
+### Option 2: GoDaddy Email Hosting
+If using GoDaddy's basic email hosting:
+1. Use `smtpout.secureserver.net` as EMAIL_HOST
+2. Port: 587 (or 465 for SSL)
+3. Use your full email address (admin@securefinancial.co.za) as EMAIL_USER
+4. Use your email account password as EMAIL_PASS
+5. If using port 465, set EMAIL_SECURE=true
+
+### Finding Your GoDaddy Email Settings
+1. Log in to your GoDaddy account
+2. Go to "My Products" → "Email"
+3. Click on your email account
+4. Look for "Email Client Settings" or "Server Settings"
+5. Note the SMTP server address and port
 
 ## Notes
 

@@ -184,10 +184,11 @@ if (contactForm) {
     removeFormMessages();
     
     try {
-        // Determine API endpoint (use relative path if same domain, or full URL if different)
+        // Determine API endpoint
+        // Use localhost for development, Netlify function for production
         const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:3000/api/contact'
-            : '/api/contact';
+            : '/.netlify/functions/send-email';
         
         // Send data to backend
         const response = await fetch(apiUrl, {
@@ -212,12 +213,23 @@ if (contactForm) {
                 const errorMessages = result.errors.map(err => err.msg).join('<br>');
                 showFormMessage(errorMessages, 'error');
             } else {
-                showFormMessage(result.message || 'An error occurred. Please try again.', 'error');
+                const errorMsg = result.error || result.message || 'An error occurred. Please try again.';
+                showFormMessage(errorMsg, 'error');
+                console.error('Form submission error:', result);
             }
         }
     } catch (error) {
         console.error('Form submission error:', error);
-        showFormMessage('Unable to submit form. Please check your connection and try again, or call us directly.', 'error');
+        let errorMessage = 'Unable to submit form. Please check your connection and try again.';
+        
+        // Provide more specific error messages
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+            errorMessage = 'Network error. Please check your internet connection and try again.';
+        } else if (error.message.includes('404')) {
+            errorMessage = 'Form service not found. Please contact us directly or try again later.';
+        }
+        
+        showFormMessage(errorMessage + ' You can also call us at 0832759626.', 'error');
     } finally {
         // Re-enable submit button
         submitButton.disabled = false;

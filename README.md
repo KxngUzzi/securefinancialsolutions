@@ -115,12 +115,20 @@ The backend uses Nodemailer to send email notifications. Configure your email se
    EMAIL_SECURE=false
    EMAIL_USER=your-email@gmail.com
    EMAIL_PASS=your-app-password-here
-   EMAIL_FROM="Secure Financial Solutions <info@securefinancial.co.za>"
-   EMAIL_TO=info@securefinancial.co.za
+   # For GoDaddy Workspace Email / Microsoft 365:
+   EMAIL_HOST=smtp.office365.com
+   EMAIL_PORT=587
+   EMAIL_SECURE=false
+   EMAIL_USER=admin@securefinancial.co.za
+   EMAIL_PASS=your-email-password
+   EMAIL_FROM="Secure Financial Solutions <admin@securefinancial.co.za>"
+   EMAIL_TO=admin@securefinancial.co.za
    
-   # Or if using a different email service for sending:
-   # EMAIL_HOST=smtp.securefinancial.co.za
-   # EMAIL_USER=info@securefinancial.co.za
+   # Alternative for GoDaddy Email Hosting:
+   # EMAIL_HOST=smtpout.secureserver.net
+   # EMAIL_PORT=587
+   # EMAIL_SECURE=false
+   # EMAIL_USER=admin@securefinancial.co.za
    ```
 
 #### For Other Email Providers:
